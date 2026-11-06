@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100d1b">
+  <meta name="description" content="WordPlay Ultra Max - Plataforma premium de caça-palavras.">
+  <title>WordPlay | Ultra Max</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">W</div>
+      <div>
+        <h2>WORDPLAY</h2>
+        <span>ULTRA MAX</span>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="avatar">W</div>
+      <div>
+        <strong>Jogador</strong>
+        <small id="profileLevel">Nível 1</small>
+      </div>
+    </div>
+
+    <nav class="navigation">
+      <span class="nav-label">MENU PRINCIPAL</span>
+      <button class="nav-item active" data-page="home">⌂ <span>Início</span></button>
+      <button class="nav-item" data-page="categories">▦ <span>Categorias</span></button>
+      <button class="nav-item" data-page="favorites">♡ <span>Favoritos</span></button>
+      <button class="nav-item" data-page="game">✦ <span>Jogar</span></button>
+
+      <span class="nav-label">PROGRESSO</span>
+      <button class="nav-item" data-page="achievements">♛ <span>Conquistas</span></button>
+      <button class="nav-item" data-page="history">◷ <span>Histórico</span></button>
+
+      <span class="nav-label">SISTEMA</span>
+      <button class="nav-item" data-page="settings">⚙ <span>Configurações</span></button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="mini-card">
+        <span>SEU PROGRESSO</span>
+        <strong id="sidebarXP">0 XP</strong>
+        <div class="progress-track">
+          <div id="sidebarProgress" class="progress-fill"></div>
+        </div>
+      </div>
+      <small>WORDPLAY © 2026</small>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+      <button class="menu-button" id="menuButton">☰</button>
+      <div class="breadcrumb">WORDPLAY <span>/</span> <strong id="pageTitle">Início</strong></div>
+      <div class="top-actions">
+        <span class="level-pill" id="topLevel">NÍVEL 1</span>
+        <div class="avatar small-avatar">W</div>
+      </div>
+    </header>
+
+    <!-- INÍCIO -->
+    <section class="page active" id="home">
+
+      <div class="hero">
+        <div class="hero-content">
+          <span class="eyebrow">✦ SUA CENTRAL DE DESAFIOS</span>
+          <h1>DESAFIE SUA<br><span>MENTE.</span></h1>
+          <p>Explore 28 categorias, encontre milhares de palavras e evolua a cada partida.</p>
+          <button class="primary-button" data-goto="categories">EXPLORAR CATEGORIAS →</button>
+        </div>
+
+        <div class="hero-art">
+          <div class="art-circle"></div>
+          <div class="art-letter">W</div>
+          <div class="floating-tag">WORD<br>SEARCH</div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span>PARTIDAS</span>
+          <strong id="statGames">0</strong>
+          <small>Total realizadas</small>
+        </div>
+
+        <div class="stat-card">
+          <span>PALAVRAS</span>
+          <strong id="statWords">0</strong>
+          <small>Palavras encontradas</small>
+        </div>
+
+        <div class="stat-card">
+          <span>EXPERIÊNCIA</span>
+          <strong id="statXP">0 XP</strong>
+          <small>Seu progresso</small>
+        </div>
+
+        <div class="stat-card">
+          <span>CONQUISTAS</span>
+          <strong id="statAchievements">0</strong>
+          <small>Desbloqueadas</small>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ESCOLHA SEU DESAFIO</span>
+          <h2>Categorias em destaque</h2>
+        </div>
+        <button class="text-button" data-goto="categories">Ver todas →</button>
+      </div>
+
+      <div class="category-grid" id="featuredCategories"></div>
+
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">CONTINUE EVOLUINDO</span>
+          <h2>Seu progresso</h2>
+        </div>
+      </div>
+
+      <div class="progress-card">
+        <div>
+          <strong id="homeLevel">Nível 1</strong>
+          <p id="homeXP">0 de 100 XP</p>
+        </div>
+
+        <div class="progress-track large">
+          <div id="homeProgress" class="progress-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIAS -->
+    <section class="page" id="categories">
+      <div class="page-intro">
+        <span class="eyebrow">EXPLORE NOSSO UNIVERSO</span>
+        <h1>CATÁLOGO DE <span>CATEGORIAS</span></h1>
+        <p>Escolha um tema e comece seu desafio.</p>
+      </div>
+
+      <div class="search-bar">
+        <span>⌕</span>
+        <input id="categorySearch" type="search" placeholder="Pesquisar ferramentas, séries, animais...">
+        <button id="clearSearch" aria-label="Limpar pesquisa">×</button>
+      </div>
+
+      <div class="filter-tabs" id="categoryFilters">
+        <button class="filter active" data-filter="all">Todas</button>
+        <button class="filter" data-filter="series">Séries</button>
+        <button class="filter" data-filter="knowledge">Conhecimento</button>
+        <button class="filter" data-filter="daily">Cotidiano</button>
+        <button class="filter" data-filter="nature">Natureza</button>
+        <button class="filter" data-filter="entertainment">Entretenimento</button>
+      </div>
+
+      <div class="category-grid" id="allCategories"></div>
+      <p class="empty-message" id="emptyCategories" hidden>Nenhuma categoria encontrada.</p>
+    </section>
+
+    <!-- FAVORITOS -->
+    <section class="page" id="favorites">
+      <div class="page-intro">
+        <span class="eyebrow">SEUS TEMAS PREFERIDOS</span>
+        <h1>MEUS <span>FAVORITOS</span></h1>
+        <p>Suas categorias favoritas em um só lugar.</p>
+      </div>
+
+      <div class="category-grid" id="favoriteCategories"></div>
+      <p class="empty-message" id="emptyFavorites">
+        Você ainda não adicionou favoritos. Explore as categorias e clique no coração.
+      </p>
+    </section>
+
+    <!-- PREPARAR JOGO -->
+    <section class="page" id="game">
+      <div class="page-intro">
+        <span class="eyebrow">MODO DE JOGO</span>
+        <h1>PREPARE SEU <span>DESAFIO</span></h1>
+        <p>Escolha a categoria e a dificuldade.</p>
+      </div>
+
+      <div class="setup-card">
+        <label for="gameCategory">CATEGORIA</label>
+        <select id="gameCategory"></select>
+
+        <label for="difficulty">DIFICULDADE</label>
+        <select id="difficulty">
+          <option value="easy">Fácil · 8 × 8</option>
+          <option value="medium" selected>Médio · 10 × 10</option>
+          <option value="hard">Difícil · 12 × 12</option>
+          <option value="expert">Especialista · 15 × 15</option>
+        </select>
+
+        <div class="setup-info">
+          <span>✦ Palavras variadas</span>
+          <span>✦ Pontuação por acerto</span>
+          <span>✦ Experiência acumulada</span>
+        </div>
+
+        <button class="primary-button full-button" id="startGame">
+          INICIAR PARTIDA →
+        </button>
+      </div>
+
+      <div class="game-area" id="gameArea" hidden>
+        <div class="game-toolbar">
+          <div>
+            <span class="eyebrow">DESAFIO ATUAL</span>
+            <h2 id="currentCategory">Categoria</h2>
+          </div>
+
+          <div class="timer-box">◷ <strong id="timer">00:00</strong></div>
+        </div>
+
+        <div class="game-stats">
+          <div>ENCONTRADAS <strong id="foundCount">0/0</strong></div>
+          <div>PONTOS <strong id="score">0</strong></div>
+        </div>
+
+        <div class="board-container">
+          <div id="gameBoard" class="game-board"></div>
+        </div>
+
+        <div class="word-panel">
+          <h3>PALAVRAS PARA ENCONTRAR</h3>
+          <div id="wordList" class="word-list"></div>
+        </div>
+
+        <div class="game-actions">
+          <button class="secondary-button" id="hintButton">✦ DICA</button>
+          <button class="secondary-button" id="restartButton">↻ REINICIAR</button>
+          <button class="danger-button" id="quitButton">SAIR</button>
+        </div>
+      </div>
+
+      <div class="result-card" id="resultCard" hidden>
+        <div class="result-icon">🏆</div>
+        <span class="eyebrow">DESAFIO CONCLUÍDO</span>
+        <h2>EXCELENTE TRABALHO!</h2>
+
+        <div class="result-stats">
+          <div><strong id="resultScore">0</strong><span>PONTOS</span></div>
+          <div><strong id="resultXP">0</strong><span>XP</span></div>
+          <div><strong id="resultTime">00:00</strong><span>TEMPO</span></div>
+        </div>
+
+        <button class="primary-button" id="newGameButton">NOVO DESAFIO</button>
+      </div>
+    </section>
+
+    <!-- CONQUISTAS -->
+    <section class="page" id="achievements">
+      <div class="page-intro">
+        <span class="eyebrow">SUAS REALIZAÇÕES</span>
+        <h1>SUAS <span>CONQUISTAS</span></h1>
+        <p>Complete desafios para desbloquear medalhas.</p>
+      </div>
+
+      <div id="achievementList" class="achievement-grid"></div>
+    </section>
+
+    <!-- HISTÓRICO -->
+    <section class="page" id="history">
+      <div class="page-intro">
+        <span class="eyebrow">SEU CAMINHO</span>
+        <h1>HISTÓRICO DE <span>PARTIDAS</span></h1>
+        <p>Veja seus desafios anteriores.</p>
+      </div>
+
+      <div class="history-list" id="historyList"></div>
+    </section>
+
+    <!-- CONFIGURAÇÕES -->
+    <section class="page" id="settings">
+      <div class="page-intro">
+        <span class="eyebrow">PERSONALIZE SUA EXPERIÊNCIA</span>
+        <h1>CONFIGURAÇÕES</h1>
+      </div>
+
+      <div class="settings-card">
+        <label class="setting-row">
+          <span>
+            <strong>Modo alto contraste</strong>
+            <small>Melhora a diferenciação visual.</small>
+          </span>
+          <input type="checkbox" id="contrastSetting">
+        </label>
+
+        <label class="setting-row">
+          <span>
+            <strong>Letras maiores</strong>
+            <small>Aumenta o tamanho das letras do tabuleiro.</small>
+          </span>
+          <input type="checkbox" id="largeSetting">
+        </label>
+
+        <label class="setting-row">
+          <span>
+            <strong>Movimentos reduzidos</strong>
+            <small>Reduz animações da interface.</small>
+          </span>
+          <input type="checkbox" id="motionSetting">
+        </label>
+
+        <button class="danger-button" id="resetData">
+          APAGAR MEU PROGRESSO LOCAL
+        </button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      WORDPLAY ULTRA MAX · DESENVOLVIDO PARA DESAFIAR SUA MENTE
+    </footer>
+
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>
